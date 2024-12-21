@@ -1,4 +1,4 @@
-import 'styles/components/CalendAr.scss';
+import 'styles/components/Calendar.scss';
 import { memo, useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite'
 import { MonthStore, useCalendar } from "@/lib/store/CNCalender";

@@ -1,0 +1,273 @@
+.Calendars {
+  @apply flex relative w-full flex-grow  overflow-x-hidden;
+
+  transition: transform 0.5s ease;
+  .Calendar {
+    @apply absolute min-w-full min-h-min ;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    animation: show 0.5s ease forwards;
+   
+    &.__current {
+      z-index: 50;
+    }
+
+
+    &.__left.__second {animation-name: showSecondLeft;}
+    &.__right.__second { animation-name: showSecondRight;}
+
+    &.__left.__current {animation-name: showCurrentLeft;}
+    &.__right.__current { animation-name: showCurrentRight;}
+
+    &.__frontal.__current {animation-name: showCurrentFrontal;} 
+
+    @keyframes showCurrentFrontal {
+      from {transform: scale(0.9); opacity: 0;}
+    }
+
+    @keyframes  showSecondLeft {  
+      from {transform: translate(0);}
+      to {transform: translate(100%);}
+    }
+    @keyframes  showSecondRight {  
+      from {transform: translate(0);}
+      to {transform: translate(-100%);}
+    }
+
+    @keyframes  showCurrentLeft {  
+      from {transform: translate(-100%);}
+    }
+    @keyframes  showCurrentRight {  
+      from {transform: translate(100%);}
+    }
+  }
+}
+
+.Calendar {
+  @apply min-w-full px-2 relative select-none h-full ;
+  
+  .wrapper-sticky {
+    @apply flex gap-2 items-center sticky top-0 z-50 bg-background ;
+    .H6 {@apply top-1 relative}
+    .H3 {@apply text-red-500; }
+  }
+
+
+  .Calendar__days {
+    &-numbers {
+      @apply grid gap-[1px] p-[1px] bg-slate-100;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      @media (max-width: 640px) {
+        grid-template-columns: repeat(auto-fit, minmax( min(100%, 200px), 1fr));
+      }
+
+      .Calendar__days-numbers__item {
+        aspect-ratio: 2/2;
+        @apply bg-white p-5 shadow-2xl shadow-blue/10;
+        
+        & > .H4 {@apply font-bold text-slate-200;}
+        &.__strangerDay {
+          @apply bg-slate-100 shadow-slate-300;
+          & > .H4 {
+            @apply font-bold text-slate-300;
+            .Span {
+              font-size: small
+            }
+          }
+        }
+
+        
+        .wrapper {
+          @apply size-full flex items-center justify-center rounded-md ;
+          .container {
+            @apply size-[80%] grid p-[1px] 
+            rounded-sm relative
+            grid-cols-4 grid-rows-4 ;
+          }
+        }
+
+      
+
+        .Calendar__days-task {
+          @apply 
+          flex justify-center items-center
+          outline-slate-200 outline
+          outline-1  bg-background 
+
+          min-md:max-w-12  min-md:max-h-12  
+          min-lg:min-w-10 min-lg:min-h-10; 
+         
+          &.__action:hover {
+            @apply bg-blue/50;
+          }
+
+          .Calendar__days-task__overlap {
+            @apply 
+            absolute size-min bg-background
+            top-0 ml-2  max-w-[350px] min-w-[250px] z-50
+            shadow-2xl shadow-slate-400/50 border-2 text-slate-950;
+            opacity: 0;
+
+            &.__active {
+              opacity: 1;
+            }
+
+            .H4 {
+              @apply border-b-2 px-2 py-1 border-slate-100 ;
+            }
+
+            .P {
+
+              @apply w-full overflow-hidden my-2  px-2 py-1 bg-background;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 5;
+            }
+          }
+         
+          &.__created {
+            @apply bg-red-200 cursor-pointer;
+           }
+          &:hover path,rect {
+            @apply stroke-white;
+          }
+          svg {
+            @apply size-4;
+            path,rect {
+              @apply  
+              stroke-slate-400 stroke-2
+            }
+          }
+        }
+
+
+        &:hover {
+          @apply z-10 rounded-md opacity-100 shadow-2xl shadow-blue/30;
+          & > .H4 {
+            @apply  text-slate-400;
+          }
+
+          .wrapper {
+            @apply shadow-2xl shadow-blue/20   ;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.ToDoList {
+  @apply relative flex-grow min-h-full ;
+
+  .ToDoList__header {
+    @apply text-center text-sm px-6 rounded-md  ;
+  }
+
+  .ToDoList__container {
+    @apply flex gap-5 w-full h-full p-4 bg-background lg:flex-col  lg:overflow-y-auto  ;
+
+    .ToDoList__task-form {
+      @apply flex min-lg:h-[calc(100vh-44px)] xl:min-w-[min(100%,500px)] min-w-full overflow-y-auto  flex-grow;
+
+      .ViewerTodoTask {
+        @apply 
+        min-lg:min-w-[300px] w-full rounded-md 
+        overflow-hidden shadow-lg shadow-slate-200;
+        .H4 {
+          @apply mb-2 border-b-2 border-slate-100 px-2;
+        }
+        .P {
+          @apply p-2 ;
+        }
+      }
+    }
+
+    .ToDoList__wrapper {
+      @apply w-full flex-grow  bg-slate-50 overflow-y-auto ;
+    }
+
+    .ToDoList__task-list {
+      @apply max-w-full overflow-x-hidden flex flex-wrap;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+
+      .ToDoList__task {
+        @apply 
+        opacity-50 bg-background border-slate-200 border-[1px]
+        flex flex-col transition-opacity flex-grow justify-between border-l-[0.5px] border-r-[0.5px];
+        height: 230px;
+
+        &.__active , &:hover {
+          opacity: 1;
+        }
+
+        &.__active {
+          @apply border-red-200 border-[2px];
+        }
+
+        .ToDoList__task-header {
+          @apply px-2 pt-4;
+          .P {
+            @apply  w-full overflow-hidden my-2;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            
+          }
+        }
+        .ToDoList__footer {
+          @apply flex py-1 px-1 border-t-2  border-slate-100 justify-between items-center;
+          .ToDoList__footer-wrapper {
+            @apply flex flex-wrap gap-1 min-w-full;
+            button {
+              @apply flex-grow;
+            }
+          }
+
+          .H5 {
+            @apply text-white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.task-form {
+  @apply w-full;
+
+  .task-form__header {
+    @apply space-y-2;
+
+    h4 {
+      @apply font-medium leading-none;
+    }
+
+    p {
+      @apply text-sm text-muted-foreground;
+    }
+  }
+
+  .task-form__input-group {
+    @apply grid gap-2;
+
+    .input-group {
+      @apply grid grid-cols-2 items-center gap-4;
+
+      .input-group__input {
+        @apply col-span-2 h-8;
+      }
+    }
+  }
+
+  .task-form-sub-task {
+    @apply flex-grow min-w-[min(100%,300px)] max-w-[600px] flex flex-col gap-2;
+  }
+
+  .task-form__buttons {
+    @apply flex gap-2;
+  }
+}
+

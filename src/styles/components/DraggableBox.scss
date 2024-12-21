@@ -1,0 +1,11 @@
+.DraggableBox {
+  @apply min-lg:fixed z-[100] select-none min-w-min min-h-min 
+  shadow-xl shadow-slate-200 bg-background
+  lg:w-full lg:h-full lg:fixed lg:top-0 lg:left-0 ;
+
+  &__top-panel {
+    @apply flex justify-end h-[30px] 
+    bg-black active:cursor-grabbing cursor-grab
+    min-lg:rounded-tl-md min-lg:rounded-tr-md ;
+  }
+}

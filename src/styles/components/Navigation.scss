@@ -1,0 +1,13 @@
+.LowerPanel {
+  @apply  sticky bottom-0 right-0 
+  z-[99] min-h-[60px] py-2 px-5 bg-background w-full 
+  shadow-slate-200/40 shadow-[0_-25px_30px] border-t-2 border-slate-100;
+
+
+  .LowerPanel__navigation {
+    @apply flex gap-4 lg:w-full;
+    button {
+      @apply lg:flex-grow min-w-min px-10 rounded-lg;
+    }
+  }
+}

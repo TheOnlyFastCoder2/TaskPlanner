@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.25.9",
     "@radix-ui/react-checkbox": "^1.1.3",

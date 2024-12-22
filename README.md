@@ -6,4 +6,5 @@ TodoList в виде календаря.
 3. Возможность искать задачи по заголовкам
 4. Возможность сохранять todoList на пк , и загружать с пк.
 
-![](screens/preview.png)
+![](https://raw.githubusercontent.com/TheOnlyFastCoder2/TaskPlanner/refs/heads/main/screens/preview.png)
+
